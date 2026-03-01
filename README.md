@@ -1,186 +1,138 @@
-# 🚀 3D Portfolio
+# Resume Online Portfolio
 
-A jaw-dropping developer portfolio packed with interactive 3D animations, buttery smooth transitions, and a space-themed aesthetic. Not your average portfolio template! This one has a fully interactive 3D keyboard where each keycap is a skill.
+A modern resume/portfolio website built with Next.js 14, React, TypeScript, Tailwind CSS, and interactive 3D keyboard visuals.
 
-> **Free to use!** This portfolio is open source. If you use it, a credit/link back would be really appreciated 🙏
+## Tech Stack
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Naresh-Khatri/3d-portfolio)
+- Next.js 14
+- React 18 + TypeScript
+- Tailwind CSS
+- Framer Motion + GSAP
+- Spline Runtime (3D keyboard)
+- Resend (contact email API)
 
-![Portfolio Preview](https://github.com/Naresh-Khatri/Portfolio/blob/main/public/assets/projects-screenshots/portfolio/landing.png?raw=true)
+## Requirements
 
-## ✨ Features
+- Node.js 18+ (recommended: Node 20+)
+- npm (project is configured and tested with npm)
 
-- **Interactive 3D Keyboard** — Custom Spline keyboard where each keycap represents a skill, revealing titles and descriptions on hover/press
-- **Buttery Animations** — GSAP + Framer Motion powered scroll, hover, and reveal animations
-- **Space Theme** — Floating particles on a dark canvas for a cosmic vibe
-- **Light & Dark Mode** — Full theme support with cheeky disclaimer toasts
-- **Responsive** — Works across all screen sizes
-- **Contact Form** — Email delivery via Resend
-- **Analytics** _(optional)_ — Umami analytics integration
+## Quick Start
 
-## 🛠️ Tech Stack
+1. Clone repo:
 
-| Layer | Technologies |
-|---|---|
-| **Framework** | Next.js 14, React 18, TypeScript |
-| **Styling** | Tailwind CSS, Shadcn UI, Aceternity UI |
-| **Animation** | GSAP, Framer Motion |
-| **3D** | Spline Runtime |
-| **Email** | Resend |
-| **Misc** | Lenis (smooth scroll), Zod, next-themes |
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (v18+)
-- pnpm (recommended), npm, or yarn
-
-### Installation
-
-1. **Clone the repository:**
-
-    ```bash
-    git clone https://github.com/Naresh-Khatri/3d-portfolio.git
-    cd 3d-portfolio
-    ```
-
-2. **Install dependencies:**
-
-    ```bash
-    pnpm install
-    ```
-
-3. **Set up environment variables:**
-
-    Copy `.env.example` to `.env.local` and fill in the values:
-
-    ```bash
-    cp .env.example .env.local
-    ```
-
-    | Variable | Required | Description |
-    |---|---|---|
-    | `RESEND_API_KEY` | Yes | API key from [Resend](https://resend.com) for the contact form |
-    | `NEXT_PUBLIC_WS_URL` | No | WebSocket server URL for realtime features (cursors, chat, presence) |
-    | `UMAMI_DOMAIN` | No | Umami analytics script URL |
-    | `UMAMI_SITE_ID` | No | Umami website ID |
-
-4. **Run the development server:**
-
-    ```bash
-    pnpm dev
-    ```
-
-5. Open [http://localhost:3000](http://localhost:3000) and see the magic ✨
-
----
-
-## 🎨 Make It Your Own
-
-All personal info is centralized in [`src/data/config.ts`](src/data/config.ts). Edit this single file to rebrand the portfolio:
-
-```ts
-const config = {
-  title: "Your Name | Your Title",
-  description: {
-    long: "Your long description for SEO...",
-    short: "Your short description...",
-  },
-  keywords: ["your", "keywords"],
-  author: "Your Name",
-  email: "you@example.com",
-  site: "https://yoursite.com",
-
-  // GitHub stars button in the header
-  githubUsername: "your-github-username",
-  githubRepo: "your-repo-name",
-
-  social: {
-    twitter: "https://x.com/you",
-    linkedin: "https://linkedin.com/in/you",
-    instagram: "https://instagram.com/you",
-    facebook: "https://facebook.com/you",
-    github: "https://github.com/you",
-  },
-};
+```bash
+git clone https://github.com/kydunguyen196/resume-online.git
+cd resume-online
 ```
 
-Other files you'll want to customize:
+2. Install dependencies:
 
-| File | What to change |
-|---|---|
-| `src/data/projects.tsx` | Your projects, screenshots, descriptions, and tech stacks |
-| `src/data/constants.ts` | Skills list (name, description, icon) and work experience |
-| `public/assets/` | Your images, OG image, and project screenshots |
-
----
-
-## ⌨️ Updating the 3D Keyboard Skills
-
-The 3D keyboard keycaps are baked into a Spline file. To update the skills displayed on the keyboard:
-
-1. **Import** the `public/assets/skills-keyboard.spline` file into [Spline](https://spline.design/)
-2. **Unhide** the keycap objects you want to edit
-3. **Update** the logo images on each keycap to your new skill icons
-4. **Rename** each keycap object to match the skill's `name` field in `src/data/constants.ts` (e.g. `js`, `react`, `docker`)
-5. **Hide** all keycap objects again
-6. **Export** the scene and overwrite `public/assets/skills-keyboard.spline`
-
-After updating the Spline file, make sure `src/data/constants.ts` has matching entries for every skill on the keyboard:
-
-```ts
-// Each keycap object name in Spline must match a key in SKILLS
-export const SKILLS: Record<SkillNames, Skill> = {
-  js: { name: "js", label: "JavaScript", shortDescription: "...", ... },
-  react: { name: "react", label: "React", shortDescription: "...", ... },
-  // ... add/remove entries to match your keyboard
-};
+```bash
+npm install
 ```
 
-The `SkillNames` enum, `SKILLS` record, and the Spline keycap names must all stay in sync for the keyboard interactions to work correctly.
+3. Create environment file:
 
----
+Windows PowerShell:
 
-## 🔌 Realtime Features (Optional)
+```powershell
+Copy-Item .env.example .env.local
+```
 
-The portfolio supports optional realtime features powered by a **separate backend API**:
+macOS/Linux:
 
-- 🖱️ **Live cursors** — See other visitors' cursors in realtime
-- 👥 **Online presence** — Shows who's currently on the site
-- 💬 **Chat** — Live chat between visitors
+```bash
+cp .env.example .env.local
+```
 
-These features activate automatically when the `NEXT_PUBLIC_WS_URL` environment variable is set. Without it, the portfolio works perfectly fine as a static site — no realtime features, no backend dependency.
+4. Configure `.env.local`:
 
-> [!NOTE]
-> The backend API is **not open source**. This is intentional! Too many people have cloned the portfolio and claimed they built it from scratch. The realtime server stays private to keep the live experience unique make make it standout.
+```env
+# Optional but recommended for production metadata
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
+# Required if you want contact form to actually send emails
+RESEND_API_KEY=
 
----
+# Optional realtime features
+NEXT_PUBLIC_WS_URL=
 
-## 🚀 Deployment
+# Optional analytics
+UMAMI_DOMAIN=
+UMAMI_SITE_ID=
+```
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Naresh-Khatri/3d-portfolio)
+5. Run development server:
 
-This site is deployed on **Vercel**. To deploy your own:
+```bash
+npm run dev
+```
 
-1. Push your code to a GitHub repository
-2. Connect the repository to [Vercel](https://vercel.com)
-3. Add your environment variables in the Vercel dashboard
-4. Vercel handles the rest — automatic deployments on every push
+Open: `http://localhost:3000`
 
----
+## Available Scripts
 
-## 🤝 Contributing
+- `npm run dev` - Start local development server
+- `npm run lint` - Run ESLint
+- `npm run build` - Build production bundle
+- `npm run start` - Start production server (after build)
+- `npm run test` - Run `lint` + `build`
+- `npm run clean` - Remove `.next` cache/build output
+- `npm run rebuild` - Clean and build again
 
-If you'd like to contribute or suggest improvements, feel free to open an issue or submit a pull request. All contributions are welcome!
+## Recover From Build/Runtime Cache Issues
 
----
+If you see random runtime/build issues (for example from stale `.next` cache), run:
 
-## 📄 License
+```bash
+npm run clean
+npm run build
+npm run start
+```
 
-This project is open source and available under the [MIT License](LICENSE).
+## Customize Your Resume Content
 
-If you use this portfolio, a credit or link back to the [original repo](https://github.com/Naresh-Khatri/3d-portfolio) would be much appreciated ❤️
+Main files you should edit:
+
+- `src/data/config.ts` - Name, title, email, social links, SEO
+- `src/data/profile.ts` - Summary, value proposition, education, languages
+- `src/data/constants.ts` - Skills + experience timeline
+- `src/data/projects.tsx` - Project list, descriptions, links, skill tags
+
+## Update Project Images
+
+Project screenshots:
+
+- `public/assets/projects-screenshots/`
+
+Navigation preview thumbnails:
+
+- `public/assets/nav-link-previews/`
+
+After replacing images, update image paths in:
+
+- `src/data/projects.tsx`
+- `src/components/header/config.ts`
+
+## 3D Keyboard Skill Mapping
+
+Keyboard scene file:
+
+- `public/assets/skills-keyboard.spline`
+
+Important:
+
+- Skill key names in `src/data/constants.ts` must match object names in Spline for hover/click interactions to work.
+
+## Deployment
+
+Recommended: Vercel
+
+1. Push code to GitHub
+2. Import repository into Vercel
+3. Add environment variables in Vercel Project Settings
+4. Deploy
+
+## License
+
+This project is for personal resume/portfolio use. Update content and branding for your own profile.

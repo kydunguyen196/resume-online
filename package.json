@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "npm run lint && npm run build",
+    "clean": "node -e \"const fs=require('fs');fs.rmSync('.next',{recursive:true,force:true});console.log('Cleaned .next cache');\"",
+    "rebuild": "npm run clean && npm run build"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",

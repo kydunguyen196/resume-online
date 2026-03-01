@@ -28,7 +28,7 @@ const BUTTONS = [
     href: config.social.instagram,
     icon: <SiInstagram size={"24"} color={"#fff"} />,
   },
-];
+].filter((button) => Boolean(button.href));
 
 const SocialMediaButtons = () => {
   const ref = useRef<HTMLDivElement>(null);

@@ -1,45 +1,47 @@
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
 const config = {
-  title: "Naresh Khatri | Full-Stack Developer",
+  title: "Nguyen Tu Ky Du | Frontend Developer",
   description: {
-    long: "Explore the portfolio of Naresh, a full-stack developer and creative technologist specializing in interactive web experiences, 3D animations, and innovative projects. Discover my latest work, including Coding Ducks, The Booking Desk, Ghostchat, and more. Let's build something amazing together!",
+    long: "Frontend Developer specializing in ReactJS, JavaScript, TypeScript, and REST API integration. I focus on delivering responsive, maintainable, and user-friendly web interfaces for real-world products.",
     short:
-      "Discover the portfolio of Naresh, a full-stack developer creating interactive web experiences and innovative projects.",
+      "Frontend Developer specializing in ReactJS, TypeScript, and scalable UI delivery.",
   },
   keywords: [
-    "Naresh",
+    "Nguyen Tu Ky Du",
     "portfolio",
-    "full-stack developer",
-    "creative technologist",
-    "web development",
-    "3D animations",
-    "interactive websites",
-    "Coding Ducks",
-    "The Booking Desk",
-    "Ghostchat",
-    "web design",
-    "GSAP",
+    "frontend developer",
+    "reactjs developer",
     "React",
+    "JavaScript",
+    "TypeScript",
     "Next.js",
-    "Spline",
-    "Framer Motion",
+    "Tailwind CSS",
+    "REST API",
+    "PostgreSQL",
+    "UI/UX",
   ],
-  author: "Naresh Khatri",
-  email: "naresh.khatri2345@gmail.com",
-  site: "https://nareshkhatri.site",
+  author: "Nguyen Tu Ky Du",
+  role: "Frontend Developer",
+  location: "Hoai Duc, Hanoi, Vietnam",
+  phone: "+84 344 079 399",
+  email: "nguyentukydu@gmail.com",
+  site: siteUrl,
+  resumeUrl: "https://github.com/kydunguyen196",
 
   // for github stars button
-  githubUsername: "naresh-khatri",
-  githubRepo: "3d-portfolio",
+  githubUsername: "kydunguyen196",
+  githubRepo: "Future-Me-FE",
 
   get ogImg() {
     return this.site + "/assets/seo/og-image.png";
   },
   social: {
-    twitter: "https://x.com/nothotchaddi",
-    linkedin: "https://www.linkedin.com/in/naresh-khatri/",
-    instagram: "https://www.instagram.com/hotchaddi",
-    facebook: "https://www.facebook.com/HotChaddi/",
-    github: "https://github.com/Naresh-Khatri",
+    twitter: "",
+    linkedin: "",
+    instagram: "",
+    facebook: "",
+    github: "https://github.com/kydunguyen196",
   },
 };
 export { config };

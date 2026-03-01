@@ -4,17 +4,22 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const ScrollDownIcon = () => {
   const [show, setShow] = useState(true);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    window.addEventListener("scroll", () => {
+    const onScroll = () => {
       if (window.scrollY > 10) {
         setShow(false);
       } else {
         setShow(true);
       }
-    });
-  });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <AnimatePresence>
       {show && (

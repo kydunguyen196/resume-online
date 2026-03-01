@@ -1,5 +1,5 @@
 "use client";
-import { Check, ChevronRight, Loader2 } from "lucide-react";
+import { ChevronRight, Loader2 } from "lucide-react";
 import React from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/ace-input";
@@ -7,7 +7,6 @@ import { Textarea } from "./ui/ace-textarea";
 import { cn } from "@/lib/utils";
 import { useToast } from "./ui/use-toast";
 import { Button } from "./ui/button";
-import { useRouter } from "next/navigation";
 
 const ContactForm = () => {
   const [fullName, setFullName] = React.useState("");
@@ -16,51 +15,88 @@ const ContactForm = () => {
   const [loading, setLoading] = React.useState(false);
 
   const { toast } = useToast();
-  const router = useRouter();
+
+  const isValid = React.useMemo(() => {
+    const trimmedName = fullName.trim();
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
+    return (
+      trimmedName.length >= 2 &&
+      /^\S+@\S+\.\S+$/.test(trimmedEmail) &&
+      trimmedMessage.length >= 10
+    );
+  }, [fullName, email, message]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!isValid) {
+      toast({
+        title: "Invalid form",
+        description:
+          "Please enter a valid name, email, and a message with at least 10 characters.",
+        variant: "destructive",
+        className: cn(
+          "top-0 w-full flex justify-center fixed md:max-w-7xl md:top-4 md:right-4"
+        ),
+      });
+      return;
+    }
+
     setLoading(true);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+
     try {
       const res = await fetch("/api/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        signal: controller.signal,
         body: JSON.stringify({
-          fullName,
-          email,
-          message,
+          fullName: fullName.trim(),
+          email: email.trim(),
+          message: message.trim(),
         }),
       });
+
       const data = await res.json();
-      if (data.error) throw new Error(data.error);
+      if (!res.ok) {
+        throw new Error(data?.error || "Unable to send message.");
+      }
+
       toast({
-        title: "Thank you!",
-        description: "I'll get back to you as soon as possible.",
+        title: "Message sent",
+        description: "Thank you. I will get back to you as soon as possible.",
         variant: "default",
         className: cn("top-0 mx-auto flex fixed md:top-4 md:right-4"),
       });
-      setLoading(false);
+
       setFullName("");
       setEmail("");
       setMessage("");
-      const timer = setTimeout(() => {
-        router.push("/");
-        clearTimeout(timer);
-      }, 1000);
     } catch (err) {
+      const messageText =
+        err instanceof DOMException && err.name === "AbortError"
+          ? "Request timed out. Please try again."
+          : err instanceof Error
+            ? err.message
+            : "Something went wrong. Please try again.";
+
       toast({
         title: "Error",
-        description: "Something went wrong! Please check the fields.",
+        description: messageText,
         className: cn(
           "top-0 w-full flex justify-center fixed md:max-w-7xl md:top-4 md:right-4"
         ),
         variant: "destructive",
       });
+    } finally {
+      clearTimeout(timeout);
+      setLoading(false);
     }
-    setLoading(false);
   };
+
   return (
     <form className="min-w-7xl mx-auto sm:mt-4" onSubmit={handleSubmit}>
       <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
@@ -71,6 +107,7 @@ const ContactForm = () => {
             placeholder="Your Name"
             type="text"
             required
+            minLength={2}
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
           />
@@ -87,21 +124,25 @@ const ContactForm = () => {
           />
         </LabelInputContainer>
       </div>
+
       <div className="grid w-full gap-1.5 mb-4">
         <Label htmlFor="content">Your Message</Label>
         <Textarea
-          placeholder="Tell me about about your project,"
+          placeholder="Tell me about your project..."
           id="content"
           required
+          minLength={10}
+          maxLength={2000}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
         <p className="text-sm text-muted-foreground">
-          I&apos;ll never share your data with anyone else. Pinky promise!
+          {message.trim().length}/2000 characters
         </p>
       </div>
+
       <Button
-        disabled={loading}
+        disabled={loading || !isValid}
         className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
         type="submit"
       >

@@ -33,7 +33,7 @@ const ContactSection = () => {
               >
                 {config.email.replace(/@/g, "(at)")}
               </a>{" "}
-              or drop your info here.
+              or call {config.phone}. I am based in {config.location}.
             </CardDescription>
           </CardHeader>
           <CardContent>

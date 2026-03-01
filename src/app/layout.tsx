@@ -56,6 +56,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: config.author,
+    jobTitle: config.role,
+    email: config.email,
+    url: config.site,
+    sameAs: Object.values(config.social).filter(Boolean),
+  };
+
   return (
     <html lang="en" className={[inter.variable, archivoBlack.variable, "font-display"].join(" ")} suppressHydrationWarning>
       <head>
@@ -64,6 +74,11 @@ export default function RootLayout({
           src={process.env.UMAMI_DOMAIN}
           data-website-id={process.env.UMAMI_SITE_ID}
         ></Script>
+        <Script
+          id="person-ld-json"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         {/* <Analytics /> */}
       </head>
       <body>

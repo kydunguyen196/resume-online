@@ -1,0 +1,15 @@
+
+> portfolio@0.1.0 dev
+> next dev -p 3011
+
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3011
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.1s
+ ○ Compiling / ...
+ ✓ Compiled / in 6.5s (2722 modules)
+ GET / 200 in 7231ms
+ ✓ Compiled in 977ms (1292 modules)
+[?25h
