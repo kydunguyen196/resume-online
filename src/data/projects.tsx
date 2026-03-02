@@ -16,29 +16,35 @@ import {
 
 const BASE_PATH = "/assets/projects-screenshots";
 
-const ProjectsLinks = ({ live, repo }: { live: string; repo?: string }) => {
+const ProjectsLinks = ({
+  gitFrontend,
+  gitBackend,
+}: {
+  gitFrontend: string;
+  gitBackend?: string;
+}) => {
   return (
     <div className="flex flex-col md:flex-row items-center justify-start gap-3 my-3 mb-8">
       <Link
         className="font-mono underline flex gap-2"
         rel="noopener"
         target="_new"
-        href={live}
+        href={gitFrontend}
       >
         <Button variant={"default"} size={"sm"}>
-          View Project
+          Git FE
           <ArrowUpRight className="ml-3 w-5 h-5" />
         </Button>
       </Link>
-      {repo && (
+      {gitBackend && (
         <Link
           className="font-mono underline flex gap-2"
           rel="noopener"
           target="_new"
-          href={repo}
+          href={gitBackend}
         >
           <Button variant={"default"} size={"sm"}>
-            GitHub
+            Git BE
             <ArrowUpRight className="ml-3 w-5 h-5" />
           </Button>
         </Link>
@@ -137,7 +143,8 @@ export type Project = {
   screenshots: string[];
   skills: { frontend: Skill[]; backend: Skill[] };
   content: React.ReactNode | any;
-  github?: string;
+  gitFrontend: string;
+  gitBackend?: string;
   live: string;
 };
 
@@ -146,8 +153,8 @@ const projects: Project[] = [
     id: "future-me-fe",
     category: "Frontend Web App",
     title: "FUTURE-ME-FE",
-    src: "/assets/projects-screenshots/portfolio/landing.png",
-    screenshots: ["landing.png"],
+    src: "/assets/projects-screenshots/futureme/home.png",
+    screenshots: ["home.png", "test.png"],
     skills: {
       frontend: [
         PROJECT_SKILLS.react,
@@ -158,7 +165,7 @@ const projects: Project[] = [
       backend: [PROJECT_SKILLS.restApi, PROJECT_SKILLS.git],
     },
     live: "https://github.com/kydunguyen196/Future-Me-FE",
-    github: "https://github.com/kydunguyen196/Future-Me-FE",
+    gitFrontend: "https://github.com/kydunguyen196/Future-Me-FE",
     get content() {
       return (
         <div>
@@ -167,14 +174,16 @@ const projects: Project[] = [
             application consumes RESTful APIs and focuses on clean user flows and
             maintainable component structure.
           </TypographyP>
-          <ProjectsLinks live={this.live} repo={this.github} />
+          <ProjectsLinks gitFrontend={this.gitFrontend} />
           <TypographyH3 className="my-4 mt-8">Highlights</TypographyH3>
           <ul className="list-disc ml-6 space-y-2 font-mono">
             <li>Built responsive UI components for core user journeys.</li>
             <li>Integrated REST APIs to handle dynamic content and data updates.</li>
             <li>Organized reusable components for easier maintenance and scaling.</li>
           </ul>
-          <SlideShow images={[`${BASE_PATH}/portfolio/landing.png`]} />
+          <SlideShow
+            images={[`${BASE_PATH}/futureme/home.png`, `${BASE_PATH}/futureme/test.png`]}
+          />
         </div>
       );
     },
@@ -183,14 +192,15 @@ const projects: Project[] = [
     id: "fe-trotot",
     category: "Frontend Web App",
     title: "FE-TroTot",
-    src: "/assets/projects-screenshots/codingducks/landing.png",
-    screenshots: ["landing.png"],
+    src: "/assets/projects-screenshots/trotot/home.png",
+    screenshots: ["home.png", "login.png", "aboutus.png", "regulation.png"],
     skills: {
       frontend: [PROJECT_SKILLS.react, PROJECT_SKILLS.js],
       backend: [PROJECT_SKILLS.restApi, PROJECT_SKILLS.git],
     },
     live: "https://github.com/kydunguyen196/FE-TroTot",
-    github: "https://github.com/kydunguyen196/FE-TroTot",
+    gitFrontend: "https://github.com/kydunguyen196/FE-TroTot",
+    gitBackend: "https://github.com/kydunguyen196/BE-TroTot",
     get content() {
       return (
         <div>
@@ -199,14 +209,24 @@ const projects: Project[] = [
             with backend REST APIs to deliver practical features and a smooth
             experience for end users.
           </TypographyP>
-          <ProjectsLinks live={this.live} repo={this.github} />
+          <ProjectsLinks
+            gitFrontend={this.gitFrontend}
+            gitBackend={this.gitBackend}
+          />
           <TypographyH3 className="my-4 mt-8">Highlights</TypographyH3>
           <ul className="list-disc ml-6 space-y-2 font-mono">
             <li>Connected frontend modules to backend APIs for real-time data.</li>
             <li>Focused on readable code and component-level reusability.</li>
             <li>Collaborated through Git-based workflow for consistent delivery.</li>
           </ul>
-          <SlideShow images={[`${BASE_PATH}/codingducks/landing.png`]} />
+          <SlideShow
+            images={[
+              `${BASE_PATH}/trotot/home.png`,
+              `${BASE_PATH}/trotot/login.png`,
+              `${BASE_PATH}/trotot/aboutus.png`,
+              `${BASE_PATH}/trotot/regulation.png`,
+            ]}
+          />
         </div>
       );
     },
@@ -215,8 +235,8 @@ const projects: Project[] = [
     id: "freelancer-job-matching-system",
     category: "Fullstack Platform",
     title: "Freelancer Job Matching System",
-    src: "/assets/projects-screenshots/ghostchat/1.png",
-    screenshots: ["1.png"],
+    src: "/assets/projects-screenshots/freelancerjobmatchingsystem/home.png",
+    screenshots: ["home.png"],
     skills: {
       frontend: [
         PROJECT_SKILLS.react,
@@ -233,8 +253,9 @@ const projects: Project[] = [
         PROJECT_SKILLS.git,
       ],
     },
-    live: "https://github.com/kydunguyen196/freelancer-job-matching-system",
-    github: "https://github.com/kydunguyen196/freelancer-job-matching-system",
+    live: "https://github.com/kydunguyen196/freelancer-job-matching-system-fe",
+    gitFrontend: "https://github.com/kydunguyen196/freelancer-job-matching-system-fe",
+    gitBackend: "https://github.com/kydunguyen196/freelancer-job-matching-system",
     get content() {
       return (
         <div>
@@ -243,7 +264,10 @@ const projects: Project[] = [
             responsive React UI, integrated authentication flows, and collaborated
             on backend API contracts and service architecture.
           </TypographyP>
-          <ProjectsLinks live={this.live} repo={this.github} />
+          <ProjectsLinks
+            gitFrontend={this.gitFrontend}
+            gitBackend={this.gitBackend}
+          />
           <TypographyH3 className="my-4 mt-8">Frontend Scope</TypographyH3>
           <ul className="list-disc ml-6 space-y-2 font-mono">
             <li>Developed responsive UI using ReactJS.</li>
@@ -260,10 +284,7 @@ const projects: Project[] = [
             <li>Integrated frontend with backend services end-to-end.</li>
           </ul>
           <SlideShow
-            images={[
-              `${BASE_PATH}/ghostchat/1.png`,
-              `${BASE_PATH}/ghostchat/2.png`,
-            ]}
+            images={[`${BASE_PATH}/freelancerjobmatchingsystem/home.png`]}
           />
         </div>
       );
