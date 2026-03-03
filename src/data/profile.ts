@@ -15,12 +15,12 @@ export type ProfileData = {
 
 export const profileData: ProfileData = {
   summary:
-    "Frontend Developer focused on building responsive, user-centered web applications with ReactJS, JavaScript, and TypeScript. Strong in converting requirements into maintainable UI modules and integrating smoothly with backend REST APIs.",
+    "Fullstack Developer focused on building responsive web applications with ReactJS/TypeScript on the frontend and reliable REST APIs on the backend using .NET and Java stacks.",
   valueProposition: [
     "Design and implement frontend features with clean component architecture and reusable patterns.",
-    "Deliver responsive interfaces optimized for usability, readability, and maintainability.",
-    "Integrate frontend modules with REST APIs and collaborate effectively with backend engineers.",
-    "Troubleshoot UI/data issues quickly and keep feature delivery stable in Agile sprints.",
+    "Build backend services and REST APIs with clear contracts, secure auth flow, and maintainable code structure.",
+    "Deliver end-to-end product features from database/API to responsive user interface.",
+    "Troubleshoot UI/API/data issues quickly and keep delivery stable in Agile sprints.",
   ],
   education: [
     {

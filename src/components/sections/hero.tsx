@@ -67,7 +67,7 @@ const HeroSection = () => {
                       side="top"
                       className="dark:bg-white dark:text-black"
                     >
-                      Frontend Developer focused on practical product delivery.
+                      Fullstack Developer focused on practical product delivery.
                     </TooltipContent>
                   </Tooltip>
                 </BlurIn>

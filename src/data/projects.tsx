@@ -103,6 +103,36 @@ const PROJECT_SKILLS = {
     fg: "white",
     icon: <span className="text-[10px] font-bold">SB</span>,
   },
+  csharp: {
+    title: "C#",
+    bg: "black",
+    fg: "white",
+    icon: <span className="text-[10px] font-bold">C#</span>,
+  },
+  dotnet: {
+    title: ".NET Framework",
+    bg: "black",
+    fg: "white",
+    icon: <span className="text-[10px] font-bold">.NET</span>,
+  },
+  entityFramework: {
+    title: "Entity Framework",
+    bg: "black",
+    fg: "white",
+    icon: <span className="text-[10px] font-bold">EF</span>,
+  },
+  sqlServer: {
+    title: "SQL Server",
+    bg: "black",
+    fg: "white",
+    icon: <span className="text-[10px] font-bold">MSSQL</span>,
+  },
+  swagger: {
+    title: "Swagger",
+    bg: "black",
+    fg: "white",
+    icon: <span className="text-[10px] font-bold">SWG</span>,
+  },
   mysql: {
     title: "MySQL",
     bg: "black",
@@ -190,13 +220,22 @@ const projects: Project[] = [
   },
   {
     id: "fe-trotot",
-    category: "Frontend Web App",
-    title: "FE-TroTot",
+    category: "Fullstack Web App",
+    title: "TroTot (FE + BE)",
     src: "/assets/projects-screenshots/trotot/home.png",
     screenshots: ["home.png", "login.png", "aboutus.png", "regulation.png"],
     skills: {
       frontend: [PROJECT_SKILLS.react, PROJECT_SKILLS.js],
-      backend: [PROJECT_SKILLS.restApi, PROJECT_SKILLS.git],
+      backend: [
+        PROJECT_SKILLS.csharp,
+        PROJECT_SKILLS.dotnet,
+        PROJECT_SKILLS.entityFramework,
+        PROJECT_SKILLS.sqlServer,
+        PROJECT_SKILLS.swagger,
+        PROJECT_SKILLS.jwt,
+        PROJECT_SKILLS.restApi,
+        PROJECT_SKILLS.git,
+      ],
     },
     live: "https://github.com/kydunguyen196/FE-TroTot",
     gitFrontend: "https://github.com/kydunguyen196/FE-TroTot",
@@ -205,19 +244,27 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono">
-            Frontend application developed with ReactJS and JavaScript, integrated
-            with backend REST APIs to deliver practical features and a smooth
-            experience for end users.
+            Fullstack rental platform where I implemented the React frontend and
+            integrated it with a .NET Framework backend API to deliver core room
+            search, account, and management workflows.
           </TypographyP>
           <ProjectsLinks
             gitFrontend={this.gitFrontend}
             gitBackend={this.gitBackend}
           />
-          <TypographyH3 className="my-4 mt-8">Highlights</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">Frontend Scope</TypographyH3>
           <ul className="list-disc ml-6 space-y-2 font-mono">
-            <li>Connected frontend modules to backend APIs for real-time data.</li>
-            <li>Focused on readable code and component-level reusability.</li>
-            <li>Collaborated through Git-based workflow for consistent delivery.</li>
+            <li>Built responsive user flows with ReactJS and JavaScript.</li>
+            <li>Connected UI modules to REST endpoints for real-time data updates.</li>
+            <li>Improved reusability with component-level architecture.</li>
+          </ul>
+          <TypographyH3 className="my-4 mt-8">Backend Scope (.NET)</TypographyH3>
+          <ul className="list-disc ml-6 space-y-2 font-mono">
+            <li>Implemented REST APIs with C# and .NET Framework.</li>
+            <li>Used Entity Framework for data access and persistence.</li>
+            <li>Managed relational data with SQL Server and optimized key queries.</li>
+            <li>Documented and tested API contracts with Swagger.</li>
+            <li>Applied Git workflow and clean service layering for maintainability.</li>
           </ul>
           <SlideShow
             images={[

@@ -1,17 +1,19 @@
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 const config = {
-  title: "Nguyen Tu Ky Du | Frontend Developer",
+  title: "Nguyen Tu Ky Du | Fullstack Developer",
   description: {
-    long: "Frontend Developer specializing in ReactJS, JavaScript, TypeScript, and REST API integration. I focus on delivering responsive, maintainable, and user-friendly web interfaces for real-world products.",
+    long: "Fullstack Developer specializing in ReactJS, TypeScript, .NET backend development, and REST API integration. I focus on delivering responsive frontend experiences and scalable backend services for real-world products.",
     short:
-      "Frontend Developer specializing in ReactJS, TypeScript, and scalable UI delivery.",
+      "Fullstack Developer specializing in ReactJS, TypeScript, and .NET APIs.",
   },
   keywords: [
     "Nguyen Tu Ky Du",
     "portfolio",
-    "frontend developer",
+    "fullstack developer",
     "reactjs developer",
+    ".net developer",
+    "c# developer",
     "React",
     "JavaScript",
     "TypeScript",
@@ -22,7 +24,7 @@ const config = {
     "UI/UX",
   ],
   author: "Nguyen Tu Ky Du",
-  role: "Frontend Developer",
+  role: "Fullstack Developer",
   location: "Hoai Duc, Hanoi, Vietnam",
   phone: "+84 344 079 399",
   email: "nguyentukydu@gmail.com",
