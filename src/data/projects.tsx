@@ -61,11 +61,23 @@ export type Skill = {
 };
 
 const PROJECT_SKILLS = {
+  nextjs: {
+    title: "Next.js",
+    bg: "black",
+    fg: "white",
+    icon: <span className="text-[10px] font-bold">NX</span>,
+  },
   react: {
     title: "ReactJS",
     bg: "black",
     fg: "white",
     icon: <RiReactjsFill />,
+  },
+  typescript: {
+    title: "TypeScript",
+    bg: "black",
+    fg: "white",
+    icon: <span className="text-[10px] font-bold">TS</span>,
   },
   js: {
     title: "JavaScript",
@@ -85,11 +97,41 @@ const PROJECT_SKILLS = {
     fg: "white",
     icon: <SiCss3 />,
   },
+  tailwind: {
+    title: "Tailwind CSS",
+    bg: "black",
+    fg: "white",
+    icon: <span className="text-[10px] font-bold">TW</span>,
+  },
+  nextAuth: {
+    title: "NextAuth",
+    bg: "black",
+    fg: "white",
+    icon: <span className="text-[10px] font-bold">AUTH</span>,
+  },
   restApi: {
     title: "REST API",
     bg: "black",
     fg: "white",
     icon: <Link2 />,
+  },
+  nodejs: {
+    title: "Node.js",
+    bg: "black",
+    fg: "white",
+    icon: <span className="text-[10px] font-bold">NODE</span>,
+  },
+  express: {
+    title: "Express",
+    bg: "black",
+    fg: "white",
+    icon: <span className="text-[10px] font-bold">EX</span>,
+  },
+  prisma: {
+    title: "Prisma",
+    bg: "black",
+    fg: "white",
+    icon: <span className="text-[10px] font-bold">PR</span>,
   },
   java: {
     title: "Java",
@@ -179,6 +221,61 @@ export type Project = {
 };
 
 const projects: Project[] = [
+  {
+    id: "electronics-ecommerce-shop",
+    category: "Fullstack eCommerce Platform",
+    title: "Electronics eCommerce Shop",
+    src: "/assets/projects-screenshots/shop/home.png",
+    screenshots: ["home.png"],
+    skills: {
+      frontend: [
+        PROJECT_SKILLS.nextjs,
+        PROJECT_SKILLS.react,
+        PROJECT_SKILLS.typescript,
+        PROJECT_SKILLS.tailwind,
+        PROJECT_SKILLS.nextAuth,
+      ],
+      backend: [
+        PROJECT_SKILLS.nodejs,
+        PROJECT_SKILLS.express,
+        PROJECT_SKILLS.prisma,
+        PROJECT_SKILLS.mysql,
+        PROJECT_SKILLS.restApi,
+        PROJECT_SKILLS.git,
+      ],
+    },
+    live: "https://github.com/kydunguyen196/Electronics-eCommerce-Shop-With-Admin-Dashboard-NextJS-NodeJS",
+    gitFrontend:
+      "https://github.com/kydunguyen196/Electronics-eCommerce-Shop-With-Admin-Dashboard-NextJS-NodeJS",
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono">
+            Modern fullstack electronics eCommerce application with a public
+            storefront and admin dashboard. Built using Next.js, Node.js/Express,
+            Prisma, and MySQL for end-to-end product, user, and order workflows.
+          </TypographyP>
+          <ProjectsLinks gitFrontend={this.gitFrontend} />
+          <TypographyH3 className="my-4 mt-8">Highlights</TypographyH3>
+          <ul className="list-disc ml-6 space-y-2 font-mono">
+            <li>
+              Implemented storefront flows: category browsing, search, product
+              details, cart, checkout, login, and register.
+            </li>
+            <li>
+              Built admin dashboard modules for products, categories, users,
+              merchants, orders, and notification center.
+            </li>
+            <li>
+              Integrated Prisma + MySQL data layer and supported bulk product
+              upload using CSV workflow.
+            </li>
+          </ul>
+          <SlideShow images={[`${BASE_PATH}/shop/home.png`]} />
+        </div>
+      );
+    },
+  },
   {
     id: "future-me-fe",
     category: "Frontend Web App",
