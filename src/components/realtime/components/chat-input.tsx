@@ -38,6 +38,7 @@ export const ChatInput = ({ onSendMessage, onTyping, placeholder = "Message" }: 
           variant="ghost"
           className={cn("h-8 w-8 shrink-0", THEME.text.secondary, THEME.bg.itemHover)}
           onClick={handleSend}
+          aria-label="Send chat message"
         >
           <Send className="w-4 h-4" />
         </Button>

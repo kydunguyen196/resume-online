@@ -102,7 +102,7 @@ const AboutSection = () => {
                 <p className="text-sm text-muted-foreground">{item.school}</p>
                 <p className="text-sm text-muted-foreground">
                   Graduation: {item.graduation}
-                  {item.gpa ? ` • GPA: ${item.gpa}` : ""}
+                  {item.gpa ? ` - GPA: ${item.gpa}` : ""}
                 </p>
                 <ul className="list-disc ml-5 space-y-1 text-sm text-muted-foreground">
                   {item.details.map((detail) => (

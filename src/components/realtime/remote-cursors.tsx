@@ -9,6 +9,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
+type CursorChangedPayload = User & {
+  pos: {
+    x: number;
+    y: number;
+  };
+};
+
 // TODO: add clicking animation
 // TODO: listen to socket disconnect
 const RemoteCursors = () => {
@@ -17,7 +24,7 @@ const RemoteCursors = () => {
   const { x, y } = useMouse({ allowPage: true });
   useEffect(() => {
     if (typeof window === "undefined" || !socket || isMobile) return;
-    socket.on("cursor-changed", (data) => {
+    const handleCursorChanged = (data: CursorChangedPayload) => {
       setUsers((prev: User[]) => {
         const newUsers = [...prev]
         const user = newUsers.find(u => u.socketId === data.socketId)
@@ -31,12 +38,17 @@ const RemoteCursors = () => {
         }
         return newUsers;
       });
-    });
-    socket.on("users-updated", (data: User[]) => {
+    };
+    const handleUsersUpdated = (data: User[]) => {
       setUsers(data);
-    });
+    };
+
+    socket.on("cursor-changed", handleCursorChanged);
+    socket.on("users-updated", handleUsersUpdated);
+
     return () => {
-      socket.off("cursor-changed");
+      socket.off("cursor-changed", handleCursorChanged);
+      socket.off("users-updated", handleUsersUpdated);
     };
   }, [socket, isMobile]);
   const handleMouseMove = useThrottle((x, y) => {

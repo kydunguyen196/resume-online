@@ -77,36 +77,47 @@ const SocketContextProvider = ({ children }: { children: ReactNode }) => {
       },
     });
     setSocket(socket);
-    socket.on("connect", () => { });
-    socket.on("msgs-receive-init", (msgs) => {
+    const handleConnect = () => { };
+    const handleMsgsReceiveInit = (msgs: Message[]) => {
       setMsgs(msgs);
-    });
-    socket.on("session", ({ sessionId }) => {
+    };
+    const handleSession = ({ sessionId }: { sessionId: string }) => {
       localStorage.setItem(SESSION_ID_KEY, (sessionId));
-    });
+    };
 
-    socket.on("msg-receive", (msgs) => {
+    const handleMsgReceive = (msgs: Message) => {
       setMsgs((p) => [...p, msgs]);
-    });
+    };
 
-    socket.on("warning", (data: { message: string }) => {
-      console.log(data)
+    const handleWarning = (data: { message: string }) => {
       toast({
         variant: "destructive",
         title: "System Warning",
         description: data.message,
       });
-    });
+    };
 
-    socket.on("msg-delete", (data: { id: number }) => {
-      console.log(data)
+    const handleMsgDelete = (data: { id: number }) => {
       setMsgs((prev) => prev.filter((m) => Number(m.id) !== data.id));
-    });
+    };
+
+    socket.on("connect", handleConnect);
+    socket.on("msgs-receive-init", handleMsgsReceiveInit);
+    socket.on("session", handleSession);
+    socket.on("msg-receive", handleMsgReceive);
+    socket.on("warning", handleWarning);
+    socket.on("msg-delete", handleMsgDelete);
+
     return () => {
+      socket.off("connect", handleConnect);
+      socket.off("msgs-receive-init", handleMsgsReceiveInit);
+      socket.off("session", handleSession);
+      socket.off("msg-receive", handleMsgReceive);
+      socket.off("warning", handleWarning);
+      socket.off("msg-delete", handleMsgDelete);
       socket.disconnect();
     };
-  }, []);
-  const currentUser = users.find(u => u.socketId === socket?.id);
+  }, [toast]);
 
   return (
     <SocketContext.Provider value={{ socket: socket, users, setUsers, msgs, isCurrentUser, focusedCursorId, setFocusedCursorId }}>

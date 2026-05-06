@@ -27,8 +27,8 @@ const ProjectsLinks = ({
     <div className="flex flex-col md:flex-row items-center justify-start gap-3 my-3 mb-8">
       <Link
         className="font-mono underline flex gap-2"
-        rel="noopener"
-        target="_new"
+        rel="noopener noreferrer"
+        target="_blank"
         href={gitFrontend}
       >
         <Button variant={"default"} size={"sm"}>
@@ -39,8 +39,8 @@ const ProjectsLinks = ({
       {gitBackend && (
         <Link
           className="font-mono underline flex gap-2"
-          rel="noopener"
-          target="_new"
+          rel="noopener noreferrer"
+          target="_blank"
           href={gitBackend}
         >
           <Button variant={"default"} size={"sm"}>

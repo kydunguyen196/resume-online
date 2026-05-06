@@ -29,8 +29,7 @@ const config = {
   phone: "+84 344 079 399",
   email: "nguyentukydu@gmail.com",
   site: siteUrl,
-  resumeUrl:
-    "https://s3.topcv.vn/data-cvs/cvs/7cc88eb0db6d7f97c57c51145da10e37.pdf?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=s3-tp-topcv%2F20260304%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260304T085758Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Signature=e9240adc19b35c26bc09aecdbc6dbc9c0616aca346b517626f823fb9cfb1dcf8#toolbar=0&navpanes=0&scrollbar=0",
+  resumeUrl: process.env.NEXT_PUBLIC_RESUME_URL || "/assets/resume.pdf",
 
   // for github stars button
   githubUsername: "kydunguyen196",
@@ -41,7 +40,7 @@ const config = {
   },
   social: {
     twitter: "",
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/in/nguyen-tu-ky-du",
     instagram: "",
     facebook: "",
     github: "https://github.com/kydunguyen196",

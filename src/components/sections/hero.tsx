@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
-import { File, Mail, MapPin } from "lucide-react";
+import { Code2, File, Mail, MapPin } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -59,7 +59,7 @@ const HeroSection = () => {
                         )}
                       >
                         {firstName}
-                        {remainingName ? <br className="md:block hiidden" /> : null}
+                        {remainingName ? <br className="hidden md:block" /> : null}
                         {remainingName}
                       </h1>
                     </TooltipTrigger>
@@ -74,11 +74,17 @@ const HeroSection = () => {
                 <BlurIn delay={1.2}>
                   <p
                     className={cn(
-                      "md:self-start md:mt-4 font-thin text-md text-slate-500 dark:text-zinc-400",
-                      "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
+                      "md:self-start md:mt-4 max-w-xl font-sans text-sm leading-6 text-slate-600 dark:text-zinc-300 sm:text-base md:text-lg",
+                      "cursor-default bg-clip-text"
                     )}
                   >
                     {config.role}
+                  </p>
+                </BlurIn>
+                <BlurIn delay={1.28}>
+                  <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600 dark:text-zinc-400 sm:text-base">
+                    I build responsive React/TypeScript interfaces and reliable
+                    REST API integrations across .NET and Java stacks.
                   </p>
                 </BlurIn>
                 <BlurIn delay={1.35}>
@@ -91,15 +97,24 @@ const HeroSection = () => {
                       <Mail className="w-3 h-3" />
                       {config.email}
                     </span>
+                    <span className="inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs text-muted-foreground">
+                      <Code2 className="w-3 h-3" />
+                      React, TypeScript, .NET, Java
+                    </span>
                   </div>
                 </BlurIn>
               </div>
               <div className="mt-8 flex flex-col gap-3 w-fit">
-                <Link href={config.resumeUrl} target="_blank" className="flex-1">
+                <Link
+                  href={config.resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1"
+                >
                   <BoxReveal delay={2} width="100%">
                     <Button className="flex items-center gap-2 w-full">
                       <File size={24} />
-                      <p>Resume</p>
+                      <span>Download Resume</span>
                     </Button>
                   </BoxReveal>
                 </Link>
@@ -111,7 +126,7 @@ const HeroSection = () => {
                           variant={"outline"}
                           className="block w-full overflow-hidden"
                         >
-                          Contact Me
+                          Email Me
                         </Button>
                       </Link>
                     </TooltipTrigger>
@@ -124,8 +139,8 @@ const HeroSection = () => {
                     config.social.linkedin) && (
                     <div className="flex items-center h-full gap-2">
                       {config.social.twitter && (
-                        <Link href={config.social.twitter} target="_blank">
-                          <Button variant={"outline"}>
+                        <Link href={config.social.twitter} target="_blank" rel="noopener noreferrer">
+                          <Button variant={"outline"} aria-label="Open X profile">
                             <SiX size={24} />
                           </Button>
                         </Link>
@@ -134,9 +149,10 @@ const HeroSection = () => {
                         <Link
                           href={config.social.github}
                           target="_blank"
+                          rel="noopener noreferrer"
                           className="cursor-can-hover"
                         >
-                          <Button variant={"outline"}>
+                          <Button variant={"outline"} aria-label="Open GitHub profile">
                             <SiGithub size={24} />
                           </Button>
                         </Link>
@@ -145,9 +161,10 @@ const HeroSection = () => {
                         <Link
                           href={config.social.linkedin}
                           target="_blank"
+                          rel="noopener noreferrer"
                           className="cursor-can-hover"
                         >
-                          <Button variant={"outline"}>
+                          <Button variant={"outline"} aria-label="Open LinkedIn profile">
                             <SiLinkedin size={24} />
                           </Button>
                         </Link>
