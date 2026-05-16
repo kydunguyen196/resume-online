@@ -17,14 +17,21 @@ import { cn } from "@/lib/utils";
 import { SectionHeader } from "./section-header";
 
 import SectionWrapper from "../ui/section-wrapper";
+import { Badge } from "../ui/badge";
+import { ArrowUpRight, Layers3 } from "lucide-react";
 
 const ProjectsSection = () => {
   return (
     <SectionWrapper
       id="projects"
-      className="relative z-10 max-w-7xl mx-auto md:min-h-[130vh]"
+      className="relative z-10 mx-auto min-h-screen max-w-7xl px-4 py-20 md:py-28"
     >
-      <SectionHeader id='projects' title="Projects" />
+      <SectionHeader
+        id="projects"
+        title="Projects"
+        desc="Selected products that show my frontend, backend, and API integration work."
+        className="static top-auto mb-12"
+      />
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6">
         {projects.map((project) => (
           <Modall key={project.src} project={project} />
@@ -34,27 +41,38 @@ const ProjectsSection = () => {
   );
 };
 const Modall = ({ project }: { project: Project }) => {
+  const techCount =
+    project.skills.frontend.length + (project.skills.backend?.length ?? 0);
+
   return (
     <div className="flex items-center justify-center">
       <Modal>
-        <ModalTrigger className="w-full bg-transparent flex justify-center group/modal-btn">
-          <div
-            className="relative w-full max-w-[320px] lg:max-w-[340px] h-auto rounded-lg overflow-hidden"
-            style={{ aspectRatio: "3/2" }}
-          >
-            <Image
-              className="absolute w-full h-full top-0 left-0 object-cover hover:scale-[1.05] transition-all"
-              src={project.src}
-              alt={`${project.title} project screenshot`}
-              width={300}
-              height={300}
-            />
-            <div className="absolute w-full h-1/2 bottom-0 left-0 bg-gradient-to-t from-black via-black/85 to-transparent pointer-events-none">
-              <div className="flex flex-col h-full items-start justify-end p-6">
-                <div className="text-lg text-left">{project.title}</div>
-                <div className="text-xs bg-white text-black rounded-lg w-fit px-2">
-                  {project.category}
+        <ModalTrigger className="group/modal-btn flex w-full justify-center bg-transparent text-left">
+          <div className="w-full overflow-hidden rounded-lg border bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl">
+            <div className="relative aspect-[16/10] overflow-hidden bg-secondary">
+              <Image
+                className="absolute left-0 top-0 h-full w-full object-cover transition-transform duration-500 group-hover/modal-btn:scale-[1.05]"
+                src={project.src}
+                alt={`${project.title} project screenshot`}
+                width={420}
+                height={260}
+              />
+            </div>
+            <div className="space-y-3 border-t bg-background/95 p-4">
+              <div className="flex items-start justify-between gap-3">
+                <div className="line-clamp-2 text-base font-semibold leading-snug text-foreground">
+                  {project.title}
                 </div>
+                <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground" />
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Badge className="rounded-md">
+                  {project.category}
+                </Badge>
+                <Badge variant="outline" className="rounded-md bg-background">
+                  <Layers3 className="mr-1 h-3 w-3" />
+                  {techCount} tech
+                </Badge>
               </div>
             </div>
           </div>
@@ -66,11 +84,11 @@ const Modall = ({ project }: { project: Project }) => {
             </ModalContent>
           </SmoothScroll>
           <ModalFooter className="gap-4">
-            <button className="px-2 py-1 bg-gray-200 text-black dark:bg-black dark:border-black dark:text-white border border-gray-300 rounded-md text-sm w-28">
+            <button className="w-28 rounded-md border border-gray-300 bg-gray-200 px-2 py-1 text-sm text-black dark:border-border dark:bg-secondary dark:text-white">
               Cancel
             </button>
             <Link href={project.live} target="_blank" rel="noopener noreferrer">
-              <button className="bg-black text-white dark:bg-white dark:text-black text-sm px-2 py-1 rounded-md border border-black w-28">
+              <button className="w-28 rounded-md border border-black bg-black px-2 py-1 text-sm text-white dark:bg-white dark:text-black">
                 Visit
               </button>
             </Link>
